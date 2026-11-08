@@ -99,7 +99,41 @@ namespace Lab5
         {
 
             // code here
+            int a = matrix.GetLength(0);
+            int b = matrix.GetLength(1);
+            for (int i = 0; i < a; i++)
+            {
+                int maxIndex = 0;
+                for (int j = 1; j < b; j++)
+                {
+                    if (matrix[i, j] > matrix[i, maxIndex])
+                    {
+                        maxIndex = j;
+                    }
+                }
+                int s = 0;
+                int cnt = 0;
+                for (int j = maxIndex + 1; j < b; j++)
+                {
+                    if (matrix[i, j] > 0)
+                    {
+                        s += matrix[i, j];
+                        cnt++;
+                    }
+                }
+                if (cnt > 0)
+                {
+                    int avg = s / cnt;
 
+                    for (int j = 0; j < maxIndex; j++)
+                    {
+                        if (matrix[i, j] < 0)
+                        {
+                            matrix[i, j] = avg;
+                        }
+                    }
+                }
+            }
             // end
 
         }
@@ -176,4 +210,4 @@ namespace Lab5
             return answer;
         }
     }
-}
+}   
